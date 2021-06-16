@@ -1,7 +1,5 @@
 package com.example.appnotes;
 
-import java.util.Date;
-
 public class Notes {
 
 

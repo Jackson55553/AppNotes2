@@ -1,14 +1,14 @@
 package com.example.appnotes;
 
-import android.view.View;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class NotesRepository {
 
     List<Notes> getNotes() {
-        return new ArrayList<>();
+    ArrayList<Notes> result = new ArrayList<>();
+        result.add(new Notes("note1", "body1","20.02.21"));
+        return result;
     }
-    
+
 }
