@@ -19,37 +19,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.navigation_drawer);
-
-        DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(
-                this,
-                drawerLayout,
-                toolbar,
-                R.string.app_name,
-                R.string.app_name
-        );
-        drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.syncState();
-
-        setSupportActionBar(toolbar);
-
-        NavigationView navigationView = findViewById(R.id.navigation_view);
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if (item.getItemId() == R.id.item_one) {
-                    return true;
-                }
-                if (item.getItemId() == R.id.item_two) {
-                    return true;
-                }
-                if (item.getItemId() == R.id.item_three) {
-                    return true;
-                }
-                return false;
-            }
-        });
+        initDrawer();
 
         getSupportFragmentManager()
                 .beginTransaction()
@@ -79,4 +49,49 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    public void initDrawer() {
+        DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(
+                this,
+                drawerLayout,
+                toolbar,
+                R.string.app_name,
+                R.string.app_name
+        );
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+
+        setSupportActionBar(toolbar);
+
+        NavigationView navigationView = findViewById(R.id.navigation_view);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if (item.getItemId() == R.id.item_one_navigation) {
+                    Toast.makeText(getBaseContext(), "item one", Toast.LENGTH_LONG).show();
+                    return true;
+                }
+                if (item.getItemId() == R.id.item_two_navigation) {
+                    Toast.makeText(getBaseContext(), "item two", Toast.LENGTH_LONG).show();
+                    return true;
+                }
+                if (item.getItemId() == R.id.item_three_navigation) {
+                    Toast.makeText(getBaseContext(), "item three", Toast.LENGTH_LONG).show();
+                    return true;
+                }
+                if (item.getItemId() == R.id.item_settings) {
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .addToBackStack(null)
+                            .replace(R.id.main, new SettingsFragment())
+                            .commit();
+                    return true;
+                }
+                return false;
+            }
+        });
+    }
+
 }
