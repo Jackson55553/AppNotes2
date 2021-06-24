@@ -20,11 +20,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.navigation_drawer);
         initDrawer();
-
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.main, new FragmentNotes())
-                .commit();
+        if (savedInstanceState == null) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.main, new FragmentNotes())
+                    .commit();
+        }
     }
 
     @Override

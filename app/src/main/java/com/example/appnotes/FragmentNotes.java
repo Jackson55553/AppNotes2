@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import java.util.List;
@@ -40,8 +41,15 @@ public class FragmentNotes extends Fragment {
 
         for (Notes note : notes) {
             View itemView = LayoutInflater.from(requireContext()).inflate(R.layout.item_note, notesList, false);
-            TextView noteName = itemView.findViewById(R.id.note_resource);
-            noteName.setText(note.getNoteName());
+            CardView noteName = itemView.findViewById(R.id.note_resource);
+
+            TextView cardTitle = itemView.findViewById(R.id.title_card);
+            TextView cardBody = itemView.findViewById(R.id.body_card);
+            TextView cardData = itemView.findViewById(R.id.data_card);
+            cardData.setText(note.getNoteDate());
+            cardTitle.setText(note.getNoteName());
+            cardBody.setText(note.getNoteBody());
+
             notesList.addView(itemView);
             noteName.setOnClickListener(new View.OnClickListener() {
                 @Override
